@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message Display</title>
+</head>
+<body>
+
+<div id="message"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
+<script>
+  // Replace 'YOUR_GOOGLE_SHEETS_KEY' with your actual Google Sheets key
+  var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1PlFe7-5_0-5lVPGeusvJ7KJKH-1MPGM_kI7nysqJibs/pubhtml';
+
+  function init() {
+    Tabletop.init({
+      key: publicSpreadsheetUrl,
+      callback: showInfo,
+      simpleSheet: true
+    });
+  }
+
+  function showInfo(data, tabletop) {
+    // Assume the sheet has a column 'Message' with the desired message
+    var message = data[0].Message;
+    
+    // Display the message on the page
+    document.getElementById('message').innerText = message;
+  }
+
+  window.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>
